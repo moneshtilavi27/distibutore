@@ -3,7 +3,7 @@
 
 
 <div class="col-md-12 bg-success ">
-    <h2 class="text-center">Purchase Return Details</h2>
+    <h2 class="text-center">PURCHASE RETURN DETAILS</h2>
     <div class="row">
         <div class="col-md-12 ">
             <div class="row cust_add">
@@ -55,9 +55,7 @@
 
 <!-----table------->
 <div class="col-md-12 theam " style="margin-top: -10px;">
-    <div class="row ip2">
-        <div class="tbl1" id="fetchdata">
-            <table class="fixed_header2 table table-bordered" id="table">
+            <table class="fixed_header1 table table-bordered" id="table">
                 <thead>
                     <tr>
                         <th style="width: 10%;">Sn</th>
@@ -119,22 +117,4 @@
                 </tbody>
             </table>
         </div>
-
-    </div>
-</div>
-</div>
-<!------table------
-
-
-
-
-
-
-</body>
-</html>
-
-
-
-
-
-SELECT `invoice_no`.`number` AS `invoice`,`local_cust`.`local_cust__name` AS `customer`,`invoice`.`invoice_date` AS `date` FROM `invoice_no`,`invoice`,`local_cust` WHERE `invoice`.`Local_cust_id`=`local_cust`.`Local_cust_id` AND `invoice_no`.`in_id`=`invoice`.`in_id` AND `invoice`.`Local_cust_id`!='0' ORDER BY `invoice`.`invoice_date
+<!------table------>

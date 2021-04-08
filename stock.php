@@ -26,13 +26,13 @@
                             <input style=" margin-top: 25px;" type="submit" value="Submit"
                                 class="col-md-2 input-sm btn btn-success" id="customer_add1" name="search">
                             <input style="margin-left:25px; margin-top: 25px;" type="button"
-                                onclick="exportTableToExcel('table', 'closingstock')" value="Excel" class="btn-sm btn-warning"
-                                id="search">
+                                onclick="exportTableToExcel('table', 'closingstock')" value="Excel"
+                                class="btn-sm btn-warning">
                         </div>
                     </form>
                     <div class="col-md-3" style="margin-left: 300px;">
                         <label>Search:</label>
-                        <input type="text" placeholder="Search.." onkeyup="myFunction()" name="search" id="search"
+                        <input type="text" placeholder="Search.." name="search" id="search"
                             class="form-control">
                     </div>
                 </div>
@@ -55,15 +55,17 @@
     <div class="col-md-12 theam " style="margin-top: -10px;">
         <table class="fixed_header1 table table-bordered" id="table">
             <thead>
-                <tr id="exelhead" style="display: none;">
-                    <th colspan="7"><h2 class="text-center">Closing Stock
-                    <?php
+                <tr class="exelhead" style="display: none;">
+                    <th colspan="7">
+                        <h2 class="text-center">Closing Stock
+                            <?php
                     if(isset($_POST['search']))
                     {
                        echo $cmp=$_POST['cmp']." ",date('d-m-Y');
                     }
                     ?>
-                    </h2></th>
+                        </h2>
+                    </th>
                 </tr>
                 <tr>
                     <th style="width:10%">Sn</th>
@@ -79,7 +81,6 @@
             </thead>
             <tbody id="mytable">
                 <script type="text/javascript"></script>
-
                 <?php
 		$sn = 0;
 		$total = 0;
@@ -105,11 +106,11 @@
                     <td><?php echo $out['item_pc']; ?></td>
                     <td><?php echo $out['item_hsn']; ?></td>
                     <td><?php echo $out['quatity']; ?></td>
-                    <td><?php echo $out['value']; ?></td>
-                    <td><?php echo $stock = $out['quatity'] * $out['value']; ?></td>
+                    <td><?php echo number_format($out['value'],2); ?></td>
+                    <td><?php echo number_format($out['quatity'] * $out['value'],2); ?></td>
                 </tr>
 
-                <?php	$stock1=$stock1+$stock; } ?>
+                <?php	$stock1=$stock1+($out['quatity'] * $out['value']); } ?>
             </tbody>
             <thead>
                 <th></th>
@@ -118,7 +119,7 @@
                 <th></th>
                 <th></th>
                 <th style="font-size:15pt"><?php echo "Total"; ?></td>
-                <th style="font-size:15pt"><?php echo $stock1;?></td>
+                <th style="font-size:15pt"><?php echo number_format($stock1,2);?></td>
                     </tr>
             </thead>
 
@@ -126,12 +127,6 @@
     </div>
     </div>
     <!------table------>
-
-
-
-
-
-
 </body>
 
 </html>

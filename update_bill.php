@@ -53,7 +53,7 @@ $(document).ready(function() {
 <body class="theam">
     <!----invoise form------>
     <div class="col-md-12 bg-success">
-        <h2 class="text-center" style="color:black;">Update Bill</h2>
+    <h3 class="text-center" style="color:black; margin-top:3px;margin-bottom:-2px;">UPDATE BILL</h3>
 
         <div class="row">
             <div class="col-md-10 ">
@@ -75,7 +75,7 @@ $(document).ready(function() {
                             class="col-md-1 form-control input-sm " id="customer_name" readonly=""
                             style="background-color:white; font-size:14pt;">
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <label>Customer Address:-</label>
                         <input type="text" name="" value="<?php echo $out['address'];?>"
                             class="col-md-1 form-control input-sm " id="customer_address" readonly=""
@@ -95,11 +95,14 @@ $(document).ready(function() {
                             class="col-md-1 form-control input-sm " id="customer_mob" readonly=""
                             style="background-color:white; font-size:14pt;">
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label>Customer GST NO:-</label>
                         <input type="text" name="" value="<?php echo $out['gst_no'];?>"
                             class="col-md-1 form-control input-sm " id="customer_email" readonly=""
                             style="background-color:white; font-size:14pt;">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Bill Cancel" class="col-md-12 input-sm btn btn-info" id="bilcancel">
                     </div>
                 </div>
             </div>
@@ -199,6 +202,21 @@ $(document).ready(function() {
         });
     });
 
+    $('#bilcancel').click(function() {
+        let billno = $('#bill_no').val();
+        $.ajax({
+            type: "post",
+            url: "updatecode.php",
+            data: {
+                action: "BillCancel",
+                billno: billno
+            },
+            success: function(status) {
+                window.location = "localsale.php";
+            }
+        })
+    });
+
     $('#delete').click(function() {
         var item_id = $('#item_id').val();
         $('#item_name').val("");
@@ -266,7 +284,7 @@ $(document).ready(function() {
                     item_id: item_id
                 },
                 success: function(status) {
-                     //alert(status);
+                    //alert(status);
                     $('#tb').load("update_item.php");
                 }
             });

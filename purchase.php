@@ -77,7 +77,7 @@ $(document).ready(function() {
 
     <!----invoise form------>
     <div class="col-md-12 bg-success ">
-        <h2 class="text-center" style="color:black;">PURCHASE BILL</h2>
+    <h3 class="text-center" style="color:black; margin-top:3px;margin-bottom:-2px;">STOCK ENTRY</h3>
         <div class="row">
             <div class="col-md-5 ip">
                 <div class="row">
@@ -195,9 +195,7 @@ $(document).ready(function() {
         </div>
         <!----invoise form------>
         <!-----table------->
-        <div class="col-md-12 theam" style="margin-top: -10px;">
-            <div class="tbl1" id="tb">
-            </div>
+        <div class="col-md-12 tbl1 theam" style="margin-top: -10px;" id="tb">
         </div>
         <!------table------>
         <script type="text/javascript">

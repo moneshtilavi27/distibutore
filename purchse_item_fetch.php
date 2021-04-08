@@ -202,7 +202,7 @@ $(document).ready(function() {
 
 	<script type="text/javascript">
 $('#print').click(function() {
-	sessionStorage.clear();
+    sessionStorage.clear();
     var gross_total = $('#gtotal').val();
     var gst_5 = $('#gst_5').val();
     var gst_12 = $('#gst_12').val();
@@ -229,7 +229,7 @@ $('#print').click(function() {
 	</script>
 	<script type="text/javascript">
 $('#cancel').click(function() {
-	sessionStorage.clear();
+    sessionStorage.clear();
     $.ajax({
         type: "post",
         url: "purchase_coding.php",

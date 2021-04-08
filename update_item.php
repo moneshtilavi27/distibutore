@@ -138,9 +138,8 @@
     </div>
     <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
         <label for="input"></label>
-        <input type="button" name="Cancel" value="Cancel" class="col-md-6 input-sm btn-danger" id="cancel">
+        <input type="button" name="Cancel" value="Back" class="col-md-6 input-sm btn-danger" id="cancel">
     </div>
-
 </div>
 
 <input type="text" name="" value="<?php echo $total; ?>" id="gtotal" style="display: none;">
@@ -162,9 +161,9 @@ $('#cancel').click(function() {
         }
     })
 });
-</script>
 
-<script type="text/javascript">
+
+
 $(document).ready(function() {
     $("#table tbody").on('dblclick', 'tr', function() {
         var currow = $(this).closest('tr');

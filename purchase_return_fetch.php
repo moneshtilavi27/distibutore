@@ -78,7 +78,7 @@
 
 	<div class="row">
 	    <div class="col-md-10">
-	        <table class="table-bordered tab" style="width:100%">
+	        <table class="table-bordered tab" style="width:100%; margin-top:-15px;">
 	            <tr>
 	                <th></th>
 	                <th>Gross Total</th>
@@ -126,11 +126,11 @@
 	            </tr>
 	        </table>
 	    </div>
-	    <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
+	    <div class="col-md-2" style="margin-top: 10px; margin-left: 0px;">
 	        <label for="input"></label>
 	        <input type="button" name="Save" value="Print" class="col-md-6 input-sm btn-success" id="print">
 	    </div>
-	    <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
+	    <div class="col-md-2" style="margin-top: 10px; margin-left: 0px;">
 	        <label for="input"></label>
 	        <input type="button" name="Cancel" value="Cancel" class="col-md-6 input-sm btn-danger" id="cancel">
 	    </div>

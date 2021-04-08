@@ -8,7 +8,7 @@ $qry="SELECT DISTINCT `vendor`.`vender_name` AS `customer`,`vendor`.`vender_mob`
 ?>
 <!----invoise form------>
 <div class="col-md-12 bg-success">
-  <h2 class="text-center">privious Bill</h2>
+<h3 class="text-center" style="color:black; margin-top:3px;margin-bottom:-2px;">PRIVIOUS BILL</h3>
 
   <div class="row">
 	<div class="col-md-10 ">

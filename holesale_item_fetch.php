@@ -11,7 +11,7 @@
 	            <th>MRP Rate</th>
 	            <th>Item Rate</th>
 	            <th>Value</th>
-	            <!--   <th>Total</th> -->
+	            <!--<th>Total</th> -->
 	        </tr>
 	    </thead>
 	    <tbody>
@@ -55,9 +55,9 @@
 	            <td><?php echo $out['item_gst'];?></td>
 	            <td><?php echo $out['item_quant'];?></td>
 	            <td><?php echo $out['free_item'];?></td>
-	            <td><?php echo round($out['mrp'],2);?></td>
-	            <td><?php echo round($out['item_rate'],2);?></td>
-	            <td><?php echo round($out['item_value'],2);?></td>
+	            <td><?php echo number_format($out['mrp'],2);?></td>
+	            <td><?php echo number_format($out['item_rate'],2);?></td>
+	            <td><?php echo number_format($out['item_value'],2);?></td>
 	            <!--  <td><?php echo $t;?></td> -->
 	            <td style="display: none;"><?php echo $out['custid'];?></td>
 	        </tr>
@@ -84,7 +84,7 @@
 						?>
 	<div class="row">
 	    <div class="col-md-10">
-	        <table class="table-bordered tab" style="width:100%">
+	        <table class="table-bordered tab" style="width:100%; margin-top:-15px;">
 	            <tr>
 	                <th></th>
 	                <th>Gross Total</th>
@@ -96,47 +96,47 @@
 	            </tr>
 	            <tr>
 	                <th>5 % GST</th>
-	                <td><?php echo round($gstfive,2); ?></td>
+	                <td><?php echo number_format($gstfive,2); ?></td>
 	                <td>2.50</td>
-	                <td><?php echo round($cgst_five,2); ?></td>
+	                <td><?php echo number_format($cgst_five,2); ?></td>
 	                <td>2.50</td>
-	                <td><?php echo round($cgst_five,2); ?></td>
-	                <th><?php echo round($gst_five,2); ?></th>
+	                <td><?php echo number_format($cgst_five,2); ?></td>
+	                <th><?php echo number_format($gst_five,2); ?></th>
 	            </tr>
 	            <tr>
 	                <th>12 % GST</th>
-	                <td><?php echo round($gsttwelve,2); ?></td>
+	                <td><?php echo number_format($gsttwelve,2); ?></td>
 	                <td>6.00</td>
-	                <td><?php echo round($cgst_six,2); ?></td>
+	                <td><?php echo number_format($cgst_six,2); ?></td>
 	                <td>6.00</td>
-	                <td><?php echo round($sgst_six,2); ?></td>
-	                <th><?php echo round($gst_six,2); ?></th>
+	                <td><?php echo number_format($sgst_six,2); ?></td>
+	                <th><?php echo number_format($gst_six,2); ?></th>
 	            </tr>
 	            <tr>
 	                <th>18 % GST</th>
-	                <td><?php echo round($gsteghteen,2); ?></td>
+	                <td><?php echo number_format($gsteghteen,2); ?></td>
 	                <td>9.00</td>
-	                <td><?php echo round($cgst_eight,2); ?></td>
+	                <td><?php echo number_format($cgst_eight,2); ?></td>
 	                <td>9.00</td>
-	                <td><?php echo round($sgst_eight,2); ?></td>
-	                <th><?php echo round($gst_eight,2); ?></th>
+	                <td><?php echo number_format($sgst_eight,2); ?></td>
+	                <th><?php echo number_format($gst_eight,2); ?></th>
 	            </tr>
 	            <tr>
 	                <th>Total</th>
-	                <th><?php echo round($total,2); ?></th>
+	                <th><?php echo number_format($total,2); ?></th>
 	                <td></td>
-	                <th><?php echo round($total_half,2); ?></th>
+	                <th><?php echo number_format($total_half,2); ?></th>
 	                <td></td>
-	                <th><?php echo round($total_half,2); ?></th>
-	                <th><?php echo round($total_gst); ?>.00</th>
+	                <th><?php echo number_format($total_half,2); ?></th>
+	                <th><?php echo number_format($total_gst); ?>.00</th>
 	            </tr>
 	        </table>
 	    </div>
-	    <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
+	    <div class="col-md-2" style="margin-top: 10px; margin-left: 0px;">
 	        <label for="input"></label>
 	        <input type="button" name="Save" value="Print" class="col-md-6 input-sm btn-success" id="print">
 	    </div>
-	    <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
+	    <div class="col-md-2" style="margin-top: 10px; margin-left: 0px;">
 	        <label for="input"></label>
 	        <input type="button" name="Cancel" value="Cancel" class="col-md-6 input-sm btn-danger" id="cancel">
 	    </div>
@@ -199,9 +199,9 @@ $(document).ready(function() {
         var item_value = currow.find('td:eq(9)').html();
         var custid = currow.find('td:eq(10)').html();
         // var x=(((item_value*item_gst)/100));
-        // 	item_value=Math.round(parseInt(item_value)+x);
+        // 	item_value=Math.number_format(parseInt(item_value)+x);
         // var y=(((item_rate*item_gst)/100));
-        // 	item_rate=Math.round(parseInt(item_rate)+y);
+        // 	item_rate=Math.number_format(parseInt(item_rate)+y);
         $('#item_id').val(item_id);
         $('#item_name').val(item_name);
         $('#item_hsn').val(item_hsn);

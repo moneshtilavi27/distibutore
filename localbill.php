@@ -2,15 +2,24 @@
 
 
 $invoice_num=$_GET['edit'];
-$qry="SELECT DISTINCT `customer`.`customer_name` AS `customer`,`customer`.`customer_mob` AS `mob`,`customer`.`customer_address` AS `address`,`customer`.`customer_gst` AS `gst_no`,`invoice`.`invoice_date` AS `date` FROM `customer`,`invoice`,`invoice_no` WHERE `customer`.`customer_id`=`invoice`.`customer_id` AND `invoice`.`in_id`=`invoice_no`.`in_id` AND `invoice_no`.`number`='$invoice_num' LIMIT 1;";
+$qry="SELECT DISTINCT `customer`.`customer_name` AS `customer`,`customer`.`customer_mob` AS `mob`,`customer`.`customer_address` AS `address`,`customer`.`customer_gst` AS `gst_no`,`invoice`.`invoice_date` AS `date`,`invoice_no`.`status` FROM `customer`,`invoice`,`invoice_no` WHERE `customer`.`customer_id`=`invoice`.`customer_id` AND `invoice`.`in_id`=`invoice_no`.`in_id` AND `invoice_no`.`number`='$invoice_num' LIMIT 1;";
   $confirm=mysqli_query($conn,$qry)or die(mysqli_error());
   $out=mysqli_fetch_array($confirm);
+  $print = $out['status'];
+  if($print==1)
+  {
+      echo '<style>
+        .fixed_header tbody{
+            background-color:lightpink;
+        }
+      </style>';
+  }
 ?>
 
 <body class="theam">
     <!----invoise form------>
     <div class="col-md-12 bg-success">
-        <h2 class="text-center" style="color:black;">Invoice Details</h2>
+    <h3 class="text-center" style="color:black; margin-top:3px;margin-bottom:-2px;">INVOICE DETAIL</h3>
 
         <div class="row">
             <div class="col-md-10 ">
@@ -67,8 +76,7 @@ $qry="SELECT DISTINCT `customer`.`customer_name` AS `customer`,`customer`.`custo
     <!----invoise form------>
     <!-----table------->
     <?php $bill_id=$_GET['edit'];?>
-    <div class="col-md-12 theam" style="margin-top: 2px;">
-        <div class="tbl1" id="tb">
+    <div class="col-md-12 theam tbl1" style="margin-top: 2px;" id="tb">
             <table class="fixed_header table table-bordered" id="table">
                 <thead>
                     <tr>
@@ -118,7 +126,7 @@ $qry="SELECT DISTINCT `customer`.`customer_name` AS `customer`,`customer`.`custo
 							 }
 
 						?>
-                    <tr>
+                    <tr <?php if($print=='1'){?> style="background-color:lightpink"; <?php }?>>
                         <td style="margin-left: 10px; width:5%"><?php echo $sn;?></td>
                         <td style="display: none;"><?php echo $out['item_id'];?></td>
                         <td style="width:30%; text-align: left;"><?php echo $out['item_name'];?></td>
@@ -205,14 +213,15 @@ $qry="SELECT DISTINCT `customer`.`customer_name` AS `customer`,`customer`.`custo
                         </tr>
                     </table>
                 </div>
+                <?php if($print!=1){?>
                 <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
                     <label for="input"></label>
                     <input type="button" name="Save" style="background-color: green;color:black" value="Print"
                         class="col-md-6 input-sm bg-success" id="print">
-                </div>
+                </div><?php }  ?>
                 <div class="col-md-2" style="margin-top: 20px; margin-left: 0px;">
                     <label for="input"></label>
-                    <input type="button" name="Cancel" value="Cancel" style="background-color: tomato;color:black"
+                    <input type="button" name="Cancel" value="Back" style="background-color: tomato;color:black"
                         class="col-md-6 input-sm" id="cancel">
                 </div>
 

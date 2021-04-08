@@ -48,65 +48,64 @@
 
     <!-----table------->
     <div class="col-md-12 theam " style="margin-top: -10px;">
-        <div class="tbl1" id="fetchdata">
-            <table class="fixed_header2 table table-bordered" id="table">
-                <thead>
-                    <tr>
-                        <th style="width: 5%" ;> Sn</th>
-                        <th id="id" style="width: 10%" ;>Bill No</th>
-                        <th style="width: 30%" ;>Item Name</th>
-                        <th>Qty</th>
-                        <th>Rate</th>
-                        <th>Value</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id="table_body">
-                    <script type="text/javascript"></script>
+        <table class="fixed_header1 table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th style="width: 5%" ;> Sn</th>
+                    <th id="id" style="width: 10%" ;>Bill No</th>
+                    <th style="width: 30%" ;>Item Name</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Value</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+                <script type="text/javascript"></script>
 
-                    <?php
+                <?php
 					  include("connect.php");
 					  $sn=0; $total=0;
 					  if(isset($_POST['search']))
 					  {
 					  	$start=date("Y-m-d",strtotime($_POST['start'])); $end=date("Y-m-d",strtotime($_POST['end']));
-					  	$qry="SELECT `item`.`item_name` AS `item_name`,`invoice`.`in_id` AS `invoice_no`,`invoice`.`qty` AS `qty`,`invoice`.`rate` AS `rate`,`invoice`.`invoice_date` AS `date` FROM `item`,`invoice` WHERE `item`.`item_id`=`invoice`.`item_id` AND `invoice`.`invoice_date` BETWEEN '$start' AND '$end' ORDER BY `invoice`.`invoice_date` DESC";
+					  	$qry="SELECT `item`.`item_name` AS `item_name`,`invoice`.`in_id` AS `invoice_no`,`invoice`.`qty` AS `qty`,`invoice`.`rate` AS `rate`,`invoice`.`invoice_date` AS `date` FROM `item`,`invoice`,`invoice_no` WHERE `item`.`item_id`=`invoice`.`item_id`AND `invoice`.`in_id`=`invoice_no`.`number` AND `invoice_no`.`status`!='1' AND `invoice`.`invoice_date` BETWEEN '$start' AND '$end' ORDER BY `invoice`.`in_id` DESC";
 					  }
 						else{
-							$qry="SELECT `item`.`item_name` AS `item_name`,`invoice`.`in_id` AS `invoice_no`,`invoice`.`qty` AS `qty`,`invoice`.`rate` AS `rate`,`invoice`.`invoice_date` AS `date` FROM `item`,`invoice` WHERE `item`.`item_id`=`invoice`.`item_id` ORDER BY `invoice`.`invoice_date` DESC";
+							$qry="SELECT `item`.`item_name` AS `item_name`,`invoice`.`in_id` AS `invoice_no`,`invoice`.`qty` AS `qty`,`invoice`.`rate` AS `rate`,`invoice`.`invoice_date` AS `date` FROM `item`,`invoice`,`invoice_no` WHERE `item`.`item_id`=`invoice`.`item_id` AND `invoice`.`in_id`=`invoice_no`.`number` AND `invoice_no`.`status`!='1' ORDER BY `invoice`.`in_id` DESC";  
 						}
 						$confirm=mysqli_query($conn,$qry)or die(mysqli_error());
 							while($out=mysqli_fetch_array($confirm))
 							{ $sn=$sn+1; 
+                                $val=$out['rate']*$out['qty'];
+                                $total += $val;
 						?>
-                    <tr>
-                        <td style="width: 5%" ;><?php echo $sn;?></td>
-                        <td style="width: 10%" ;><?php echo $out['invoice_no'];?></td>
-                        <td style="width: 30%" ;><?php echo $out['item_name'];?></td>
-                        <td><?php echo $out['qty'];?></td>
-                        <td><?php echo $out['rate'];?></td>
-                        <td><?php echo $out['rate']*$out['qty'];?></td>
-                        <td><?php echo date("d-m-Y",strtotime($out['date']));?></td>
-                    </tr>
-                    <?php	}  ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                <tr>
+                    <td style="width: 5%" ;><?php echo $sn;?></td>
+                    <td style="width: 10%" ;><?php echo $out['invoice_no'];?></td>
+                    <td style="width: 30%" ;><?php echo $out['item_name'];?></td>
+                    <td><?php echo $out['qty'];?></td>
+                    <td><?php echo number_format($out['rate'],2);?></td>
+                    <td><?php echo number_format($val,2);?></td>
+                    <td><?php echo date("d-m-Y",strtotime($out['date']));?></td>
+                </tr>
+                <?php	}  ?>
+            </tbody>
+            <thead>
+                <th style="width: 5%" ;></th>
+                <th style="width: 10%" ;></th>
+                <th style="width: 30%" ;></th>
+                <th></th>
+                <th style="font-size:15pt"><?php echo "Total"; ?></td>
+                <th style="font-size:15pt"><?php echo number_format($total,2);?></td>
+                <th></th>
+                </tr>
+            </thead>
+        </table>
     </div>
     <!------table------>
 
-    <script>
-    $(document).ready(function() {
-        $('#search').keyup(function() {
-            var value = $(this).val().toLowerCase();
-            $('#table_body tr').filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-
-        });
-    });
-    </script>
+ 
 
 
 

@@ -137,8 +137,8 @@ include("header.php");
                         $("#item_hsn").val(data[2]);
                         $("#item_gst").val(data[3]);
                         $("#item_unit").val(data[4]);
-                        $('#item_mrp').val(data[5])
-                        $('#item_rate').val(data[6])
+                        $('#item_mrp').val(data[5]);
+                        $('#item_rate').val(data[6]);
                     }
                 });
             });
@@ -151,7 +151,7 @@ include("header.php");
 <body>
     <!----invoise form------>
     <div class="col-md-12 bg-success ">
-        <h2 class="text-center" style="color:black;">INVOICE</h2>
+        <h3 class="text-center" style="color:black; margin-top:3px;margin-bottom:-2px;">INVOICE</h3>
         <div class="row">
             <div class="col-md-6 ip">
                 <div class="row">
@@ -159,7 +159,8 @@ include("header.php");
                         <label>Client Name:-</label>
                     </div>
                     <div class="col-md-6 cust_search">
-                        <input type="text" name="" class="col-md-1 form-control input-sm " autocomplete="off" id="inputZip4">
+                        <input type="text" name="" class="col-md-1 form-control input-sm " autocomplete="off"
+                            id="inputZip4">
                         <input type="text" name="" class="col-md-1 form-control input-sm " id="cust_id"
                             style="display: none;" readonly="">
                         <lable id="list"></lable>
@@ -210,7 +211,8 @@ include("header.php");
                         </div>
                         <div class="offset-md-3 col-md-3 cust_info">
                             <label for="input">Item Name</label>
-                            <input type="text" name="" autocomplete="off" class="col-md-1 form-control input-sm " id="item_name">
+                            <input type="text" name="" autocomplete="off" class="col-md-1 form-control input-sm "
+                                id="item_name">
                             <lable id="list1"></lable>
                         </div>
                         <div class="offset-md-3 col-md-1 cust_info">
@@ -281,48 +283,8 @@ include("header.php");
         </div>
         <!----invoise form------>
         <!-----table------->
-        <div class="col-md-12  theam" style="margin-top: -10px;">
-            <div class="tbl1" id="tb">
-
-
-            </div>
+        <div class="col-md-12  theam tbl1" style="margin-top: -10px;" id="tb">
         </div>
-        <!------table------>
-        <!--------bottons------>
-        <!-- <div class="col-md-12 bg-info ">
-<div class="row ip1">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="offset-md-3 col-md-2 cust_info" style="margin-left: 50px;">
-        <label for="input">Gross Total</label>
-        <input type="text" name="" class="col-md-1 form-control input-sm " id="total1">
-      </div>
-      <div class="offset-md-3 col-md-2 cust_info">
-        <label for="input">CGST</label>
-        <input type="text" name="" class="col-md-1 form-control input-sm ">
-      </div>
-      <div class="offset-md-3 col-md-2 cust_info">
-        <label for="input">SGST</label>
-        <input type="text" name="" class="col-md-1 form-control input-sm ">
-      </div>
-      <div class="offset-md-3 col-md-2 cust_info">
-        <label for="input">Total amount</label>
-        <input type="text" name="" class="col-md-1 form-control input-sm ">
-      </div>
-      <div class="offset-md-2 col-md-2" style="margin-top: 20px; margin-left: 0px;">
-        <label for="input"></label>
-        <input type="button" name="print" value="Print" class="col-md-6 input-sm " id="print">
-      </div>
-      
-      <div class="offset-md-2 col-md-2 " style="margin-top: 20px; margin-left: -90px;">
-        <label for="input"></label>
-        <input type="submit" value="Delete" class="col-md-6 input-sm ">
-      </div>
-    </div>
-  </div>
-  </div>
-</div> -->
-        <!--------bottons------>
 
         <script type="text/javascript">
         $(document).ready(function() {
@@ -438,44 +400,6 @@ include("header.php");
                         $('#tb').load("holesale_item_fetch.php");
                     }
                 });
-
-                //cheaK FOR STOCK
-                // $.ajax({
-                //  type:"post",
-                //  url:"stock_fetch.php",
-                //  data:{
-                //    item_quant : item_quant,
-                //    item_id : item_id
-                //  },
-                //  success:function(qty){
-                //        if(qty == 1)
-                //        {
-                //            $.ajax({
-                //              type:"post",
-                //              url:"holesale_coding.php",
-                //              data:{
-                //                action:"holesale_item",
-                //                custid : custid,
-                //                item_name: item_name,
-                //                item_hsn: item_hsn,
-                //                item_quant : item_quant,
-                //                item_unit:item_unit,
-                //                item_gst:item_gst,
-                //                item_rate:item_rate,
-                //                item_mrp:item_mrp,
-                //                item_value:item_value,
-                //                item_id:item_id
-                //              },
-                //                success:function(status){
-                //                      alert(status);
-                //                      $('#tb').load("holesale_item_fetch.php");
-                //                    }
-                //                  });
-                //        }else{
-                //          alert("Less Stock of "+item_name+" ="+qty);
-                //        }
-                //    }
-                // });
             }
         });
         </script>

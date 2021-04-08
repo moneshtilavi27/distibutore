@@ -109,7 +109,7 @@ if ($_SESSION['type']!="admin") {
     </style>
     <script type="text/javascript">
     function exportTableToExcel(tableID, filename = '') {
-        $('#exelhead').css('display','block');
+        $('.exelhead').css('display','block');
         var downloadLink;
         var dataType = 'application/vnd.ms-excel';
         var tableSelect = document.getElementById(tableID);
@@ -138,8 +138,17 @@ if ($_SESSION['type']!="admin") {
             //triggering the function
             downloadLink.click();
         }
-        $('#exelhead').css('display','none');
+        $('.exelhead').css('display','none');
     }
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            var value = $(this).val().toLowerCase();
+            $('#table tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+
+        });
+    });
     </script>
 </head>
 

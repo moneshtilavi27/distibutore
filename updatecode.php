@@ -133,4 +133,26 @@ if($action=="item_delete")
         }
         echo $in_id;
     }
+
+    if($action=="BillCancel")
+    {
+        $in_id = $_POST['billno'];
+        $q1="UPDATE `invoice_no` SET `status`='1' WHERE `in_id`='$in_id';";
+        $confirm1=mysqli_query($conn,$q1);
+        $confirm2=mysqli_query($conn,"SELECT * FROM `updateitem`;");
+        while ($out=mysqli_fetch_array($confirm2))
+        {	
+            $cust_id=$out['custid'];
+            $item_id=$out['item_id'];
+            $qq="SELECT `qty`,`free`,`invoice_date` FROM `invoice` WHERE `in_id`='$in_id' AND `item_id`='$item_id';";
+            $confirm3=mysqli_query($conn,$qq)or die(mysqli_error());
+            $row =mysqli_fetch_array($confirm3);
+            $q3="SELECT * FROM `stock` WHERE `item_id`='$item_id';";
+            $confirm4=mysqli_query($conn,$q3);
+            $stock=mysqli_fetch_array($confirm4);
+            $stak = $row['qty']+$row['free'];
+            $stock_quantity = $stock['stock_quantity'] + $stak;
+            mysqli_query($conn,"DELETE FROM `updateitem` WHERE `item_id`='$item_id';");
+        }
+    }      
 ?>
